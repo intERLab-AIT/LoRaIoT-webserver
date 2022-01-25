@@ -1,0 +1,34 @@
+version: '3'
+services:
+    loraiot-webserver:
+        image: nginx:latest
+        container_name: loraiot-webserver
+        ports:
+            - 80:80
+            - 443:443
+        restart: always
+        volumes:
+            - ./conf/:/etc/nginx/conf.d/:ro
+            - ./certbot/www:/var/www/certbot/:ro
+            - ~/certbot:/etc/certbot/:ro
+        external_links:
+            - app-lorarelay
+            - lorawan-stack
+        networks:
+            - lorarelay
+            - lorawan-stack
+    certbot:
+        image: certbot/certbot:latest
+        depends_on:
+            - loraiot-webserver
+        volumes:
+            - ./certbot/www/:/var/www/certbot/:rw
+            - ~/certbot:/etc/letsencrypt/:rw
+
+networks:
+    lorarelay:
+        external: true
+        name: lorarelay2_default
+    lorawan-stack:
+        external: true
+        name: the-things-stack_default
