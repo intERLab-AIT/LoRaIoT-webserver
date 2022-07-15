@@ -1,7 +1,7 @@
 version: '3'
 services:
     loraiot-webserver:
-        image: nginx:latest
+        build: .
         container_name: loraiot-webserver
         ports:
             - 80:80
@@ -11,6 +11,7 @@ services:
             - ./conf/:/etc/nginx/conf.d/:ro
             - ./certbot/www:/var/www/certbot/:ro
             - ~/certbot:/etc/certbot/:ro
+            - ./can5/firmware:/var/www/data/can5/firmware:ro
         external_links:
             - app-lorarelay
             - lorawan-stack
