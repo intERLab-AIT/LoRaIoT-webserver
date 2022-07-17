@@ -1,1 +1,1 @@
-Firmware for Canarin 5.
+Stable firmware for Canarin 5.

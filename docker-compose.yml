@@ -11,7 +11,7 @@ services:
             - ./conf/:/etc/nginx/conf.d/:ro
             - ./certbot/www:/var/www/certbot/:ro
             - ~/certbot:/etc/certbot/:ro
-            - ./can5/firmware:/var/www/data/can5/firmware:ro
+            - ./can5:/var/www/data/can5:ro
         external_links:
             - app-lorarelay
             - lorawan-stack
