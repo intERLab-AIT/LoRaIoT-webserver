@@ -29,7 +29,7 @@ services:
 networks:
     lorarelay:
         external: true
-        name: lorarelay2_default
+        name: lora-relay_default
     lorawan-stack:
         external: true
         name: the-things-stack_default
